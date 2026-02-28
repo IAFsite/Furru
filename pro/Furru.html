@@ -151,6 +151,14 @@ h2{
 
 <script>
 
+function generateDescription(fp){
+  return `${fp.name} merupakan unit Furru dengan identitas ${fp.sn} dan registrasi ${fp.reg}, yang mulai aktif sejak ${fp.deploy}.
+
+Dibangun menggunakan platform ${fp.model}, unit ini memiliki tinggi ${fp.height_no_ears} cm tanpa telinga dan mencapai ${fp.height_with_ears} cm saat struktur telinga diperhitungkan.
+
+Struktur fisik dan konfigurasi unit disesuaikan dengan spesifikasi modelnya, dengan status identitas saat ini tercatat sebagai ${fp.sex}.`;
+  }
+  
 function getUnitID(){
   const params = new URLSearchParams(window.location.search);
   return params.get("id") || "FP001";
@@ -203,7 +211,8 @@ function updateHero(fp){
 
 function updateOverview(fp){
   const overview = document.getElementById("overview");
-  overview.textContent = fp.description || "No description available.";
+  overview.textContent = fp.description || generateDescription(fp);
+
 }
 
 function updateSpecs(fp){
@@ -237,4 +246,5 @@ loadFP();
 
 </script>
 </body>
+
 </html>
