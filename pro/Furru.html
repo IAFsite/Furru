@@ -153,11 +153,11 @@ h2{
 <script>
 
 function generateDescription(fp){
-  return `${fp.name} merupakan unit Furru dengan serial number ${fp.sn} dan registrasi ${fp.reg}, yang mulai aktif sejak ${fp.deploy}.
+  return `${name} adalah unit Furru dengan serial number ${sn} dan REG-ID ${reg}, ${name} sudah aktif sejak ${deploy}.
 
-Dibangun menggunakan base avatar ${fp.model}, unit ini memiliki tinggi ${fp.height_no_ears} cm tanpa telinga dan mencapai ${fp.height_with_ears} cm saat struktur telinga diperhitungkan.
+${name} Menggunakan base model avatar ${model}, unit ini memiliki tinggi ${height_no_ears} cm tanpa telinga dan ${height_with_ears} cm secara keseluruhan.
 
-Struktur fisik dan konfigurasi unit disesuaikan dengan spesifikasi modelnya, dengan status identitas saat ini tercatat sebagai ${fp.sex}.`;
+Unit ini diklasifikasikan sebagai ${sex}.`;
   }
   
 function getUnitID(){
@@ -249,6 +249,7 @@ loadFP();
 </body>
 
 </html>
+
 
 
 
