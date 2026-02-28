@@ -152,9 +152,9 @@ h2{
 <script>
 
 function generateDescription(fp){
-  return `${fp.name} merupakan unit Furru dengan identitas ${fp.sn} dan registrasi ${fp.reg}, yang mulai aktif sejak ${fp.deploy}.
+  return `${fp.name} merupakan unit Furru dengan serial number ${fp.sn} dan registrasi ${fp.reg}, yang mulai aktif sejak ${fp.deploy}.
 
-Dibangun menggunakan platform ${fp.model}, unit ini memiliki tinggi ${fp.height_no_ears} cm tanpa telinga dan mencapai ${fp.height_with_ears} cm saat struktur telinga diperhitungkan.
+Dibangun menggunakan base avatar ${fp.model}, unit ini memiliki tinggi ${fp.height_no_ears} cm tanpa telinga dan mencapai ${fp.height_with_ears} cm saat struktur telinga diperhitungkan.
 
 Struktur fisik dan konfigurasi unit disesuaikan dengan spesifikasi modelnya, dengan status identitas saat ini tercatat sebagai ${fp.sex}.`;
   }
@@ -248,3 +248,4 @@ loadFP();
 </body>
 
 </html>
+
