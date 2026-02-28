@@ -1,0 +1,95 @@
+{
+  "personnel": {
+    "FP001": {
+      "name": "Deu",
+      "sn": "FP001",
+      "reg": "FP001110825M",
+      "sex": "Male",
+      "deploy": "11/08/2025",
+      "height_no_ears": 193,
+      "height_with_ears": 203,
+      "model": "Deuzear",
+      "profile": "img/Deu.png",
+      "subtitle": "FP001 • FP001110825M • ICT",
+      "description": ""
+    },
+    "FP002": {
+      "name": "Alpha",
+      "sn": "FP002",
+      "reg": "FP002271025M",
+      "sex": "Male",
+      "deploy": "27/10/2025",
+      "height_no_ears": 198,
+      "height_with_ears": 208,
+      "model": "Alphazear",
+      "profile": "img/Alpha.png",
+      "subtitle": "FP002 • FP002271025M • SMC",
+      "description": ""
+    },
+    "FP003": {
+      "name": "Cebol",
+      "sn": "FP003",
+      "reg": "FP003071125U",
+      "sex": "Unknown",
+      "deploy": "07/11/2025",
+      "height_no_ears": 122,
+      "height_with_ears": 130,
+      "model": "Chibigen",
+      "profile": "img/Cebol.png",
+      "subtitle": "FP003 • FP003071125U • NONE",
+      "description": ""
+    },
+    "FP004": {
+      "name": "Felo",
+      "sn": "FP004",
+      "reg": "FP004131125M",
+      "sex": "Male",
+      "deploy": "13/11/2025",
+      "height_no_ears": 175,
+      "height_with_ears": 183,
+      "model": "Winterpal Feline",
+      "profile": "img/Felo.png",
+      "subtitle": "FP004 • FP004131125M • ICT",
+      "description": ""
+    },
+    "FP005": {
+      "name": "Fela",
+      "sn": "FP005",
+      "reg": "FP005131125S",
+      "sex": "Female",
+      "deploy": "13/11/2025",
+      "height_no_ears": 165,
+      "height_with_ears": 173,
+      "model": "Winterpal Feline",
+      "profile": "img/Fela.png",
+      "subtitle": "FP005 • FP005131125S • ICT",
+      "description": ""
+    },
+    "FP006": {
+      "name": "Nova",
+      "sn": "FP006",
+      "reg": "FP006111225S",
+      "sex": "Female",
+      "deploy": "11/12/2025",
+      "height_no_ears": 170,
+      "height_with_ears": 180,
+      "model": "Nova",
+      "profile": "img/Nova.png",
+      "subtitle": "FP006 • FP006111225S • EBS",
+      "description": ""
+    },
+    "FP007": {
+      "name": "Nop",
+      "sn": "FP007",
+      "reg": "FP007141225S",
+      "sex": "Male",
+      "deploy": "14/12/2025",
+      "height_no_ears": 182,
+      "height_with_ears": 192,
+      "model": "Nop",
+      "profile": "img/Nop.png",
+      "subtitle": "FP007 • FP007141225S • EBS",
+      "description": ""
+    }
+  }
+}
