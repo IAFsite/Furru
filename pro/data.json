@@ -9,7 +9,7 @@
       "height_no_ears": 193,
       "height_with_ears": 203,
       "model": "Deuzear",
-      "profile": "../img/deu.png",
+      "profile": "img/deu.png",
       "subtitle": "FP001 • FP001110825M • ICT",
       "role": ""
     },
@@ -22,7 +22,7 @@
       "height_no_ears": 198,
       "height_with_ears": 208,
       "model": "Alphazear",
-      "profile": "../img/Alpha.png",
+      "profile": "img/Alpha.png",
       "subtitle": "FP002 • FP002271025M • SMC",
       "role": ""
     },
@@ -35,7 +35,7 @@
       "height_no_ears": 122,
       "height_with_ears": 130,
       "model": "Chibigen",
-      "profile": "../img/Cebol.png",
+      "profile": "img/Cebol.png",
       "subtitle": "FP003 • FP003071125U • NONE",
       "role": ""
     },
@@ -48,7 +48,7 @@
       "height_no_ears": 175,
       "height_with_ears": 183,
       "model": "Winterpal Feline",
-      "profile": "../img/Felo.png",
+      "profile": "img/Felo.png",
       "subtitle": "FP004 • FP004131125M • ICT",
       "role": ""
     },
@@ -61,7 +61,7 @@
       "height_no_ears": 165,
       "height_with_ears": 173,
       "model": "Winterpal Feline",
-      "profile": "../img/Fela.png",
+      "profile": "img/Fela.png",
       "subtitle": "FP005 • FP005131125S • ICT",
       "role": ""
     },
@@ -74,7 +74,7 @@
       "height_no_ears": 170,
       "height_with_ears": 180,
       "model": "Novabeast",
-      "profile": "../img/Nova.png",
+      "profile": "img/Nova.png",
       "subtitle": "FP006 • FP006111225S • EBS",
       "role": ""
     },
@@ -87,7 +87,7 @@
       "height_no_ears": 182,
       "height_with_ears": 192,
       "model": "Nova Pup",
-      "profile": "../img/Nop.png",
+      "profile": "img/Nop.png",
       "subtitle": "FP007 • FP007141225S • EBS",
       "role": ""
     }
