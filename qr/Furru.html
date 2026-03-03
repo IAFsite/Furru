@@ -162,7 +162,7 @@ Unit ini diklasifikasikan sebagai ${fp.sex}.`;
   
 function getUnitID(){
   const params = new URLSearchParams(window.location.search);
-  return params.get("id") || "FP001";
+  return (params.get("id") || "FP001").toUpperCase();
 }
 
 async function loadFP(){
@@ -251,6 +251,7 @@ loadFP();
 </body>
 
 </html>
+
 
 
 
