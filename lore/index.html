@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAF Archive</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0f0f12;
+  color:#fff;
+}
+
+/* ===== GLOBAL BG ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:url("../img/pic/Deu.png");
+  background-size:cover;
+  background-position:center;
+  opacity:.05;
+  transform:scale(1.05);
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(to bottom, rgba(15,15,18,.92), rgba(15,15,18,.98));
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 30px;
+  display:flex;
+  justify-content:flex-end;
+  z-index:999;
+  pointer-events:none;
+}
+
+.logo img{
+  height:40px;
+  opacity:.9;
+  pointer-events:auto;
+}
+
+/* ===== SECTION ===== */
+.section{
+  padding:80px 60px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  font-size:28px;
+  margin-bottom:30px;
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar{
+  display:flex;
+  gap:16px;
+  margin-bottom:28px;
+}
+
+.search,
+.filter{
+  background:#14141b;
+  border:none;
+  color:white;
+  padding:16px 18px;
+  border-radius:14px;
+  font-size:14px;
+  outline:none;
+}
+
+.search{
+  flex:1;
+}
+
+/* ===== DIRECTORY ===== */
+.directory{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* ===== CARD ===== */
+.file{
+  position:relative;
+  background:#14141b;
+  border-radius:18px;
+  padding:24px 26px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:.2s;
+}
+
+.file:hover{
+  transform:translateY(-2px);
+  background:#181821;
+}
+
+/* ===== BACKGROUND IMAGE PER CARD ===== */
+.file-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position: calc(100% + 70px) 55%;
+  opacity:.3;
+  filter:contrast(1.1);
+  z-index:0;
+}
+
+/* ===== TEXT ABOVE BG ===== */
+.file-content{
+  position:relative;
+  z-index:2;
+}
+
+.file-title{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.file-id{
+  color:#888;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.file-meta{
+  color:#bbb;
+  font-size:14px;
+}
+
+/* ===== ACCENT BAR ===== */
+.file::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:5px;
+  height:100%;
+  background:var(--accent);
+  z-index:3;
+}
+
+/* COLORS */
+.doc{ --accent:#4da3ff; }
+.fdoc{ --accent:#a96cff; }
+.dlog{ --accent:#46d9ff; }
+.fimo{ --accent:#ff9f43; }
+.rep{ --accent:#3ddc84; }
+
+/* EMPTY */
+.empty{
+  text-align:center;
+  color:#777;
+  padding:50px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .section{
+    padding:60px 25px;
+  }
+
+  .toolbar{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="overlay"></div>
+
+<div class="topbar">
+  <div class="logo">
+    <img src="../iaf-logo.png">
+  </div>
+</div>
+
+<section class="section">
+
+  <h2 class="section-title">Catalog</h2>
+
+  <div class="toolbar">
+    <input id="search" class="search" placeholder="Search document...">
+
+    <select id="filter" class="filter">
+      <option value="ALL">All Category</option>
+      <option value="DOC">DOC</option>
+      <option value="FDOC">FDOC</option>
+      <option value="DLOG">DLOG</option>
+      <option value="FIMO">FIMO</option>
+      <option value="REP">REP</option>
+    </select>
+  </div>
+
+  <div id="directory" class="directory"></div>
+
+</section>
+
+<script>
+
+let database=[];
+
+/* ===== LOAD ===== */
+async function loadData(){
+  const res=await fetch("data.json");
+  database=await res.json();
+  render(database);
+}
+
+/* ===== PARSE ===== */
+function parseReg(reg){
+
+  const prefix=reg.match(/^[A-Z]+/)?.[0] || "UNKNOWN";
+  const digits=reg.replace(/\D/g,"");
+
+  const number=digits.slice(0,3)||"---";
+  const raw=digits.slice(-8);
+
+  let date="--/--/----";
+
+  if(raw.length===8){
+    date=`${raw.slice(0,2)}/${raw.slice(2,4)}/${raw.slice(4,8)}`;
+  }
+
+  return {prefix,number,date};
+}
+
+/* ===== BG PER TYPE ===== */
+function bgOf(prefix){
+  const map={
+    DOC:"../img/pic/Deu.png",
+    FDOC:"../img/pic/Felo.png",
+    DLOG:"../img/pic/Fela.png",
+    FIMO:"../img/pic/Vix.png",
+    REP:"../img/pic/Vix.png"
+  };
+
+  return map[prefix] || "";
+}
+
+/* ===== LABEL ===== */
+function labelOf(p){
+  return {
+    DOC:"DOC",
+    FDOC:"FURRU DOC",
+    DLOG:"LOG",
+    FIMO:"MEMO",
+    REP:"REPORT"
+  }[p] || p;
+}
+
+/* ===== CLASS ===== */
+function classOf(p){
+  return p.toLowerCase();
+}
+
+/* ===== RENDER ===== */
+function render(data){
+
+  const wrap=document.getElementById("directory");
+  wrap.innerHTML="";
+
+  if(!data.length){
+    wrap.innerHTML='<div class="empty">No document found</div>';
+    return;
+  }
+
+  data.forEach(file=>{
+
+    const info=parseReg(file.reg_id);
+
+    const card=document.createElement("div");
+    card.className=`file ${classOf(info.prefix)}`;
+
+    card.innerHTML=`
+      <div class="file-bg"
+        style="background-image:url('${bgOf(info.prefix)}')">
+      </div>
+
+      <div class="file-content">
+        <div class="file-title">${file.title}</div>
+        <div class="file-id">REG-ID : ${file.reg_id}</div>
+        <div class="file-meta">
+          ${labelOf(info.prefix)} #${info.number} • ${info.date}
+        </div>
+      </div>
+    `;
+
+    card.onclick=()=>{
+      location.href=`read.html?id=${encodeURIComponent(file.reg_id)}`;
+    };
+
+    wrap.appendChild(card);
+  });
+}
+
+/* ===== FILTER ===== */
+function applyFilter(){
+
+  const q=document.getElementById("search").value.toLowerCase();
+  const type=document.getElementById("filter").value;
+
+  const filtered=database.filter(file=>{
+
+    const info=parseReg(file.reg_id);
+
+    const matchText=
+      file.title.toLowerCase().includes(q) ||
+      file.content.toLowerCase().includes(q) ||
+      file.reg_id.toLowerCase().includes(q);
+
+    const matchType=
+      type==="ALL" || info.prefix===type;
+
+    return matchText && matchType;
+  });
+
+  render(filtered);
+}
+
+document.getElementById("search").oninput=applyFilter;
+document.getElementById("filter").onchange=applyFilter;
+
+loadData();
+
+</script>
+
+</body>
+</html>
