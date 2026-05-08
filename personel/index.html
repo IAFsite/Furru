@@ -172,13 +172,13 @@ h2{
 
 <div class="topbar">
   <div class="logo">
-    <img src="iaf-logo.png">
+    <img src="../iaf-logo.png">
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="img/pic/Nami.png">
+  <img src="../img/pic/Nami.png">
   <div class="hero-content">
     <h1>IAF Furru Presonel</h1>
     <p>Furru Project | if ai can be a friend</p>
@@ -206,7 +206,7 @@ h2{
 async function loadCatalog(){
 
   try{
-    const res = await fetch("../data.json");
+    const res = await fetch("data.json");
     const data = await res.json();
     const market = document.getElementById("market");
 
